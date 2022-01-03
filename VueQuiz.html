@@ -1,0 +1,26 @@
+<html>
+	<head>
+		<script src="https://unpkg.com/vue@next"></script>
+	</head>
+	<body>
+		<h1>Vue TodoList</h1>
+		<div class="result">
+			<div class="list" v-for="ListContent in ListContents">
+				{{ListContent.today}}
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		const TodoList = Vue.createApp({
+			data(){
+				return{
+					ListContents:[
+						{today: "吃飯"},
+						{today: "洗澡"},
+						{today: "刷牙"},
+						{today: "睡覺"}]
+				}
+			}
+		}).mount(".result")
+	</script>
+</html>

@@ -1,0 +1,140 @@
+<html>
+	<header>
+		<script src="https://unpkg.com/vue@next"></script>
+		<style type="text/css">
+			body{
+				background-color: white;
+				margin: 0;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+
+			.fruit-buskit{
+				width: 70%;
+				height: 50%;
+				background-color: darkblue;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				position: relative;
+			}
+
+			.fruit-pictures{
+				width: 80%;
+				height: 70%;
+				margin: 3px;
+				background-color: skyblue;
+				position: relative;
+				display: block;
+				transition-property: all;
+  				transition-duration: 4s;
+  				transition-delay: 2s;
+			}
+
+			.fruit-name{
+				height: 2em;
+				width: 100%;
+				margin: 0;
+				position: absolute;
+				bottom: 0px;
+				font-size: 1em;
+				font-style: 'Nunito', sans-serif;
+				color: white;
+				text-align: right;
+				background-color: black;
+				opacity:0.5;
+			}
+
+			.run-img{
+				position: absolute;
+				background-color: black;
+				height: 100%;
+				width: 3em;
+				opacity: 0.5;
+				color: white;
+				font-size: 1em;
+				font-weight:bold;
+				display: flex;
+				align-items: center;
+				align-content: center;
+				text-align: center;
+				cursor: pointer;
+			}
+		</style>
+	</header>
+	<body>
+		<div class="fruit-buskit">
+			
+			<div class="fruit-pictures" v-for="fruitIntro in fruitIntros" v-show="defultFruit === fruitIntro.imageNumber">
+				{{fruitIntro.imageNumber}}
+				<div class="fruit-name">
+					{{fruitIntro.fruit}}
+				</div>
+			</div>
+			<div class="run-img" style="left: 0;" @click="imgGo(-1)">〈</div>
+			<div class="run-img" style="right: 0;" @click="imgGo(1)">〉</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		
+		const fruits = [
+			"蘋果",
+			"橘子",
+			"香蕉",
+			"芭樂"
+		];
+
+		const pictures = [1,2,3,4];
+
+		const marquee = {
+			data(){
+				return{
+					fruitIntros: [
+						{imageNumber: pictures[0], fruit: fruits[0]},
+						{imageNumber: pictures[1], fruit: fruits[1]},
+						{imageNumber: pictures[2], fruit: fruits[2]},
+						{imageNumber: pictures[3], fruit: fruits[3]}
+					],
+					defultFruit: 1,
+				}
+			},
+			methods:{
+				imgGo(counter){
+					
+					this.runImages(this.defultFruit += counter);
+					//return this.defultFruit;
+				},
+				runImages(counter){
+
+					//const imgElements = this.fruitIntros;
+					//console.log(imgElements);
+					const imgElements = document.getElementsByClassName('fruit-pictures');
+					//const showOff = this.fruitIntros;
+					//alert(imgElements.length);
+					if(counter > imgElements.length){
+
+						this.defultFruit = 1;
+					
+					}else if(counter < 1){
+
+						this.defultFruit = imgElements.length;
+
+					}
+
+					for(i = 0; i < this.fruitIntros.length; i++){
+						
+						//imgElements[i].style.display = "none";
+					}
+
+					//imgElements[this.defultFruit-1].style.margin.left = "2000 px";
+					//imgElements[this.defultFruit-1].style.display = "block";
+
+				}
+
+			}
+		}
+
+		Vue.createApp(marquee).mount('.fruit-buskit')
+	</script>
+</html>
