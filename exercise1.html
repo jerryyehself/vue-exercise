@@ -1,108 +1,110 @@
 <html>
-	<title>Vue測試</title>
-	<head>	
-		<script src="https://unpkg.com/vue@next"></script>
-	</head>
-	<body>
-		<div id="vuetest">
+<title>Vue測試</title>
+
+<head>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.4.21/vue.global.prod.min.js"></script>
+</head>
+
+<body>
+	<div id="vuetest">
 		練習一：計時器與hover(v-bind:title)
-			<span v-bind:title="message">
-				Counter: {{ counter }}
-			</span>
-		</div>
+		<span v-bind:title="message">
+			Counter: {{ counter }}
+		</span>
+	</div>
 
-		<div id="useroutput">
+	<div id="useroutput">
 		練習二：使用者輸入(v-on:click)
-			<p>{{ Usermessage }}</p>
-			<button v-on:click="reverseMessage">反轉訊息</button>
-		</div>
-		<div class="u-v">
+		<p>{{ Usermessage }}</p>
+		<button v-on:click="reverseMessage">反轉訊息</button>
+	</div>
+	<div class="u-v">
 		練習三：使用者與顯示雙向綁定(v-model)
-			<p>{{ Usermessage2 }}</p>
-			<input v-model="Usermessage2"/>	
-		</div>
-		<div class="blind">
+		<p>{{ Usermessage2 }}</p>
+		<input v-model="Usermessage2" />
+	</div>
+	<div class="blind">
 		練習四：條件(if)
-			<p v-if="ucme">你現在看到我ㄌ 又沒看到我ㄌ</p>
-		</div>	
-		<div class="forloop">
+		<p v-if="ucme">你現在看到我ㄌ 又沒看到我ㄌ</p>
+	</div>
+	<div class="forloop">
 		練習五：迴圈(for)
-			<ol>
-				<li v-for="looplist in looplists">
-					{{ looplist.te }}
-				</li>
-			</ol>
-		</div>
-	</body>	
+		<ol>
+			<li v-for="looplist in looplists">
+				{{ looplist.te }}
+			</li>
+		</ol>
+	</div>
+</body>
 
-	<script type="text/javascript">
-		//練習一
-		const Counter = {
-			data() {
-				return {
-      				counter: 0,
-      				message:"hover測試"
-    			}
-  			},
-			created(){
-				setInterval(() =>{
-					this.counter++
-				},
-				1000)
+<script type="text/javascript">
+	//練習一
+	const Counter = {
+		data() {
+			return {
+				counter: 0,
+				message: "hover測試"
 			}
-		}
-
-		Vue.createApp(Counter).mount('#vuetest');
-		//練習二
-		const Usermessage = {
-			data(){
-				return{
-					Usermessage:"hi"
-				}
+		},
+		created() {
+			setInterval(() => {
+				this.counter++
 			},
-			methods:{
-				reverseMessage(){
-					this.Usermessage = this.Usermessage.split('').reverse().join('')
-				}
+				1000)
+		}
+	}
+
+	Vue.createApp(Counter).mount('#vuetest');
+	//練習二
+	const Usermessage = {
+		data() {
+			return {
+				Usermessage: "hi"
+			}
+		},
+		methods: {
+			reverseMessage() {
+				this.Usermessage = this.Usermessage.split('').reverse().join('')
 			}
 		}
+	}
 
-		Vue.createApp(Usermessage).mount("#useroutput");
-		//練習三
-		const Usermessage2 = {
-			data(){
-				return{
-					Usermessage2:"預設"
-				}
+	Vue.createApp(Usermessage).mount("#useroutput");
+	//練習三
+	const Usermessage2 = {
+		data() {
+			return {
+				Usermessage2: "預設"
 			}
 		}
+	}
 
-		Vue.createApp(Usermessage2).mount(".u-v");
-		//練習四
-		const blind = {
-			data(){
-				return{
-					ucme: false
-				}
+	Vue.createApp(Usermessage2).mount(".u-v");
+	//練習四
+	const blind = {
+		data() {
+			return {
+				ucme: false
 			}
 		}
+	}
 
-		Vue.createApp(blind).mount(".blind");
-		//練習五
-		const forlist = {
-			data(){
-				return{
-					looplists:[
-						{te: "11"},
-						{te: "22"},
-						{te: "33"}
-					]
-				}
+	Vue.createApp(blind).mount(".blind");
+	//練習五
+	const forlist = {
+		data() {
+			return {
+				looplists: [
+					{ te: "11" },
+					{ te: "22" },
+					{ te: "33" }
+				]
 			}
 		}
+	}
 
-		Vue.createApp(forlist).mount(".forloop")
-	</script>
+	Vue.createApp(forlist).mount(".forloop")
+</script>
 
 
 

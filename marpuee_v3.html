@@ -1,172 +1,170 @@
 <html>
-	<head>
-		<script src="https://unpkg.com/vue@next"></script>
-		<style type="text/css">
-			body{
-				margin: 0;
-				height: 100%;
-				width: 100%;
-				align-items: center;
-			}
 
-			.fruit-buskit{
-				width: 80%;
-				position: relative;
-				overflow: hidden;
-				margin: 0 auto;
-			}
+<head>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.4.21/vue.global.prod.min.js"></script>
+	<style type="text/css">
+		body {
+			margin: 0;
+			height: 100%;
+			width: 100%;
+			align-items: center;
+		}
 
-			.fruit-pictures{
-				z-index: 1;
-				width: 100%;
-				height: 70%;
-				position: relative;
-				white-space: nowrap;
-				overflow: hidden;
-				display: inline-block;
-				justify-content: center;
-				align-items: center;
-			}
+		.fruit-buskit {
+			width: 80%;
+			position: relative;
+			overflow: hidden;
+			margin: 0 auto;
+		}
 
-			.per-fruit-picture{
-				width: 70%;
-				height: calc(100% - 50px);
-				background-color: skyblue;
-				position: relative;
-				z-index: 2;
-				display:inline-block;
-				margin: 25px 15%;
-				transition: 1s;
-				box-shadow: 0 0 20px black;
-			}
+		.fruit-pictures {
+			z-index: 1;
+			width: 100%;
+			height: 70%;
+			position: relative;
+			white-space: nowrap;
+			overflow: hidden;
+			display: inline-block;
+			justify-content: center;
+			align-items: center;
+		}
 
-			.fruit-name{
-				height: 2em;
-				width: calc(100% - 10px);
-				margin: 0;
-				padding-right: 10px;
-				position: absolute;
-				bottom: 0px;
-				font-size: 1em;
-				font-style: 'Nunito', sans-serif;
-				color: white;
-				text-align: right;
-				background-color: black;
-				opacity: 0.5;
-				vertical-align: middle;
-				line-height: 2em;
-			}
+		.per-fruit-picture {
+			width: 70%;
+			height: calc(100% - 50px);
+			background-color: skyblue;
+			position: relative;
+			z-index: 2;
+			display: inline-block;
+			margin: 25px 15%;
+			transition: 1s;
+			box-shadow: 0 0 20px black;
+		}
 
-			.run-img{
-				background-color: black;
-				height: 100%;
-				width: 3em;
-				opacity: 0.5;
-				color: white;
-				font-size: 1em;
-				font-weight: bold;
-				display: inline-flex;
-				align-items: center;
-				justify-content: center;
-				cursor: pointer;
-				position: absolute;
-				z-index: 2;
-			}
+		.fruit-name {
+			height: 2em;
+			width: calc(100% - 10px);
+			margin: 0;
+			padding-right: 10px;
+			position: absolute;
+			bottom: 0px;
+			font-size: 1em;
+			font-style: 'Nunito', sans-serif;
+			color: white;
+			text-align: right;
+			background-color: black;
+			opacity: 0.5;
+			vertical-align: middle;
+			line-height: 2em;
+		}
 
-			a:link {
-				text-decoration: none;
-				color: black;
-			}
+		.run-img {
+			background-color: black;
+			height: 100%;
+			width: 3em;
+			opacity: 0.5;
+			color: white;
+			font-size: 1em;
+			font-weight: bold;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			cursor: pointer;
+			position: absolute;
+			z-index: 2;
+		}
 
-			.director {
-				display:flex; 
-				justify-content: center;
-				z-index: 3;
-				position: absolute;
-				bottom: 8%;
-				width: 100%;
-				color: blanchedalmond;
-			}
+		a:link {
+			text-decoration: none;
+			color: black;
+		}
 
-			.nowImage{
-				font-weight: bolder;
-				margin: 3px;
-				cursor: pointer;
-			}
-		</style>
-	</head>
-	<body>
-		<h1>幻燈片練習</h1>
-		<div class="fruit-buskit">
-			
-			<div class="fruit-pictures" >
-				<div class="director">
+		.director {
+			display: flex;
+			justify-content: center;
+			z-index: 3;
+			position: absolute;
+			bottom: 8%;
+			width: 100%;
+			color: blanchedalmond;
+		}
 
-					<slide-director  v-for="(index, fruitIntro) in fruitIntros" 
-									:fruit-intros="fruitIntros" 
-									:default-fruit="defaultFruit"
-									:id="fruitIntro" 
-									:style="fruitIntro === this.defaultFruit ? 'color: black': 'color: white'"
-									@update-by-director="updateByDirector">
-					</slide-director>
-				
-				</div>
+		.nowImage {
+			font-weight: bolder;
+			margin: 3px;
+			cursor: pointer;
+		}
+	</style>
+</head>
 
-				<fruit-slide v-for="fruitIntro in fruitIntros" 
-							:default-fruit="defaultFruit"
-							:image-number="fruitIntro.imageNumber" 
-							:fruit="fruitIntro.fruit">
-				</fruit-slide>
-				
-				<images-translator :default-fruit="defaultFruit" 
-					:fruit-intros="fruitIntros" 
-					@update-by-back="updateByBack">
-				</images-translator>
-				
+<body>
+	<h1>幻燈片練習</h1>
+	<div class="fruit-buskit">
+
+		<div class="fruit-pictures">
+			<div class="director">
+
+				<slide-director v-for="(index, fruitIntro) in fruitIntros" :fruit-intros="fruitIntros"
+					:default-fruit="defaultFruit" :id="fruitIntro"
+					:style="fruitIntro === this.defaultFruit ? 'color: black': 'color: white'"
+					@update-by-director="updateByDirector">
+				</slide-director>
+
 			</div>
 
-		</div>
-		<div class="ref">
-			<h2>參考來源</h2>
-			<p><a href="https://codepen.io/frank890417/pen/bWrKOZ">https://codepen.io/frank890417/pen/bWrKOZ</a></p>
-			<p><a href="https://creativecoding.in/2021/04/26/%E8%AE%93%E6%88%91%E5%80%91%E4%BE%86%E5%BF%AB%E9%80%9F%E5%AF%AB%E5%80%8B%E6%BC%82%E6%B5%AE%E6%84%9F%E7%9A%84%E8%BC%AA%E6%92%AD%E5%90%A7%EF%BC%81%EF%BC%88%E7%9B%B4%E6%92%AD%E7%AD%86%E8%A8%98%EF%BC%89/">讓我們來快速寫個漂浮感的輪播吧！動態網頁程式教學（直播筆記）</a></p>
-		</div>
-	</body>
-	<script type="text/javascript">
+			<fruit-slide v-for="fruitIntro in fruitIntros" :default-fruit="defaultFruit"
+				:image-number="fruitIntro.imageNumber" :fruit="fruitIntro.fruit">
+			</fruit-slide>
 
-		const fruitInfor = [{imageNumber: "蘋果", fruit:1},
-							{imageNumber: "橘子", fruit:2},
-							{imageNumber: "香蕉", fruit:3},
-							{imageNumber: "芭樂", fruit:4}];
+			<images-translator :default-fruit="defaultFruit" :fruit-intros="fruitIntros" @update-by-back="updateByBack">
+			</images-translator>
 
-		const marquee = Vue.createApp({
-			data(){
-				return{
-					fruitIntros: fruitInfor,
-					defaultFruit: 0,
-					
-				}
-			},
-			methods:{
-				updateByBack: function(nowFruit){
-					this.defaultFruit = nowFruit;
-					//console.log(this.defaultFruit);
-				},
-				updateByDirector: function(nowFruit){
-					this.defaultFruit = nowFruit;
-					//console.log(this.defaultFruit);
-				}
+		</div>
+
+	</div>
+	<div class="ref">
+		<h2>參考來源</h2>
+		<p><a href="https://codepen.io/frank890417/pen/bWrKOZ">https://codepen.io/frank890417/pen/bWrKOZ</a></p>
+		<p><a
+				href="https://creativecoding.in/2021/04/26/%E8%AE%93%E6%88%91%E5%80%91%E4%BE%86%E5%BF%AB%E9%80%9F%E5%AF%AB%E5%80%8B%E6%BC%82%E6%B5%AE%E6%84%9F%E7%9A%84%E8%BC%AA%E6%92%AD%E5%90%A7%EF%BC%81%EF%BC%88%E7%9B%B4%E6%92%AD%E7%AD%86%E8%A8%98%EF%BC%89/">讓我們來快速寫個漂浮感的輪播吧！動態網頁程式教學（直播筆記）</a>
+		</p>
+	</div>
+</body>
+<script type="text/javascript">
+
+	const fruitInfor = [{ imageNumber: "蘋果", fruit: 1 },
+	{ imageNumber: "橘子", fruit: 2 },
+	{ imageNumber: "香蕉", fruit: 3 },
+	{ imageNumber: "芭樂", fruit: 4 }];
+
+	const marquee = Vue.createApp({
+		data() {
+			return {
+				fruitIntros: fruitInfor,
+				defaultFruit: 0,
+
 			}
-		})
-
-		marquee.component('fruit-slide',{
-			props:['imageNumber', 'fruit', 'defaultFruit'],
-			data(){
-				return{
-					pictureWidth: 100//slide寬度100%
-				}
+		},
+		methods: {
+			updateByBack: function (nowFruit) {
+				this.defaultFruit = nowFruit;
+				//console.log(this.defaultFruit);
 			},
-			template:`
+			updateByDirector: function (nowFruit) {
+				this.defaultFruit = nowFruit;
+				//console.log(this.defaultFruit);
+			}
+		}
+	})
+
+	marquee.component('fruit-slide', {
+		props: ['imageNumber', 'fruit', 'defaultFruit'],
+		data() {
+			return {
+				pictureWidth: 100//slide寬度100%
+			}
+		},
+		template: `
 				<div class="per-fruit-picture" :style="computedLeft">
 					{{imageNumber}}
 					<div class="fruit-name">
@@ -174,82 +172,83 @@
 					</div>
 				</div>
 				`,
-			computed:{
-				computedLeft: function(){
-					const result = "left: " + (-this.pictureWidth * (this.defaultFruit)) + "%";
-					return result;
-				}
+		computed: {
+			computedLeft: function () {
+				const result = "left: " + (-this.pictureWidth * (this.defaultFruit)) + "%";
+				return result;
 			}
-			
-		})
+		}
 
-		marquee.component('slide-director',{
-			props:['fruitIntros','defaultFruit'],
-			emits:['updateByDirector'],
-			template:`
+	})
+
+	marquee.component('slide-director', {
+		props: ['fruitIntros', 'defaultFruit'],
+		emits: ['updateByDirector'],
+		template: `
 				<span class="nowImage" @click="imageDirector(e)" >
 						—
 				</span>
 			`,
-			methods:{
-				imageDirector: function(e){
-					const directorId = Number(event.target.id);
-					//console.log(directorId);
-					this.$emit('updateByDirector', directorId)
-					//this.defaultFruit = directorId;
-				}
+		methods: {
+			imageDirector: function (e) {
+				const directorId = Number(event.target.id);
+				//console.log(directorId);
+				this.$emit('updateByDirector', directorId)
+				//this.defaultFruit = directorId;
 			}
-		})
+		}
+	})
 
-		marquee.component('images-translator',{
-			template:`
+	marquee.component('images-translator', {
+		template: `
 				<div class="run-img" style="left: 0;" @click="imagesBack(-1)">〈</div>	
 				<div class="run-img" style="right: 0;" @click="imagesBack(1)">〉</div>
 			`,
-			props:[
-				'fruitIntros',
-				'defaultFruit'
-			],
-			emits:[
-				"updateByBack"
-			],
-			methods:{
-				imagesBack: function(counter){
-					const fruitKind = this.fruitIntros.length;
-					const nowFruit = (this.defaultFruit+ counter + fruitKind) % fruitKind;
-					this.$emit('updateByBack', nowFruit);
-				}
+		props: [
+			'fruitIntros',
+			'defaultFruit'
+		],
+		emits: [
+			"updateByBack"
+		],
+		methods: {
+			imagesBack: function (counter) {
+				const fruitKind = this.fruitIntros.length;
+				const nowFruit = (this.defaultFruit + counter + fruitKind) % fruitKind;
+				this.$emit('updateByBack', nowFruit);
 			}
-		})
+		}
+	})
 
-		/*const marquee = {
-			data(){
-				return{
-					fruitIntros: fruitIntros,
-					defaultFruit: 0,
-					pictureWidth: 100
-				}
-			},
-			computed:{
-				computedLeft: function(){
-      				const result = "left: " + (-this.pictureWidth * (this.defaultFruit)) + "%";
-					return result;
-				}
-			},
-			methods:{
-				imagesBack: function(counter){
-
-					this.defaultFruit = (this.defaultFruit+ counter + this.fruitIntros.length) % this.fruitIntros.length;
-
-				},
-				imageDirector: function(e){
-					
-					const directorId = event.target.id;
-					this.defaultFruit = directorId;
-				}
+	/*const marquee = {
+		data(){
+			return{
+				fruitIntros: fruitIntros,
+				defaultFruit: 0,
+				pictureWidth: 100
 			}
-		}*/
+		},
+		computed:{
+			computedLeft: function(){
+					const result = "left: " + (-this.pictureWidth * (this.defaultFruit)) + "%";
+				return result;
+			}
+		},
+		methods:{
+			imagesBack: function(counter){
 
-		marquee.mount('.fruit-buskit')
-	</script>
+				this.defaultFruit = (this.defaultFruit+ counter + this.fruitIntros.length) % this.fruitIntros.length;
+
+			},
+			imageDirector: function(e){
+				
+				const directorId = event.target.id;
+				this.defaultFruit = directorId;
+			}
+		}
+	}*/
+
+	marquee.mount('.fruit-buskit')
+</script>
+
 </html>

@@ -1,51 +1,54 @@
 <html>
-	<title>
-		Vue測試3
-	</title>
-	<head>
-		<script src="https://unpkg.com/vue@next"></script>
-		<style type="text/css">
-			button{
-				display: flex;
-				align-items: column;
-				width: 5em;
+<title>
+	Vue測試3
+</title>
+
+<head>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.4.21/vue.global.prod.min.js"></script>
+	<style type="text/css">
+		button {
+			display: flex;
+			align-items: column;
+			width: 5em;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="test">
+		<te :chartType="chartList" v-for="chartList in chartLists"></te>
+		<!--<div v-for="chartList in chartLists" @click="getchat(chartList)">{{chartList}}</div>-->
+		<div>{{this.ot}}</div>
+	</div>
+</body>
+<script type="text/javascript">
+	const test = Vue.createApp({
+		data() {
+			return {
+				chartLists: ['d3.js', 'chart.js'],
+				ot: ""
 			}
-		</style>
-	</head>
-	<body>
-		<div class="test">
-			<te :chartType="chartList" v-for="chartList in chartLists"></te>
-			<!--<div v-for="chartList in chartLists" @click="getchat(chartList)">{{chartList}}</div>-->
-			<div>{{this.ot}}</div>
-		</div>
-	</body>
-	<script type="text/javascript">
-		const test = Vue.createApp({
-			data(){
-				return{
-					chartLists: ['d3.js', 'chart.js'],
-					ot: ""
-				}
-			},
-			methods:{
-				getchat: function(text){
-						this.ot = text;
-						//alert(this.ot);
-					}/*,
+		},
+		methods: {
+			getchat: function (text) {
+				this.ot = text;
+				//alert(this.ot);
+			}/*,
 					set: function(outtext){
 						const ot = this.text
-					}*/ 
-				}
-			})
+					}*/
+		}
+	})
 
-		test.component('te',{
-			props:['chartType'],
-			template:`
+	test.component('te', {
+		props: ['chartType'],
+		template: `
 				<div @click="getchat(chartList)">`
 					{{}}
-				`</div>`
+		`</div>`
 			});
 
-		const vm = test.mount('.test')
-	</script>
+	const vm = test.mount('.test')
+</script>
+
 </html>
