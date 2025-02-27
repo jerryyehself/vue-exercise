@@ -3,41 +3,83 @@
 
 <head>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.4.21/vue.global.prod.min.js"></script>
+	<script src="https://unpkg.com/@tailwindcss/browser@4"></script>
 </head>
 
-<body>
-	<div id="vuetest">
-		練習一：計時器與hover(v-bind:title)
-		<span v-bind:title="message">
-			Counter: {{ counter }}
-		</span>
+<body class="bg-slate-500 text-stone-200 m-5 flex flex-col gap-5">
+	<div>
+		<a href="./index.html" class="flex font-bold text-lg">
+			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+				stroke="currentColor" class="size-6">
+				<path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+			</svg>
+			<span>back</span></a>
 	</div>
+	<div class="gap-5 flex flex-col">
+		<div id="vuetest">
+			<div class="text-xl bg-slate-700 p-2 rounded-md border-l-4 border-l-amber-400">
+				練習一：計時器與hover(v-bind:title)
+			</div>
+			<div class="p-2">
+				<span v-bind:title="message">
+					Counter: {{ counter }}
+				</span>
+			</div>
+		</div>
 
-	<div id="useroutput">
-		練習二：使用者輸入(v-on:click)
-		<p>{{ Usermessage }}</p>
-		<button v-on:click="reverseMessage">反轉訊息</button>
-	</div>
-	<div class="u-v">
-		練習三：使用者與顯示雙向綁定(v-model)
-		<p>{{ Usermessage2 }}</p>
-		<input v-model="Usermessage2" />
-	</div>
-	<div class="blind">
-		練習四：條件(if)
-		<p v-if="ucme">你現在看到我ㄌ 又沒看到我ㄌ</p>
-	</div>
-	<div class="forloop">
-		練習五：迴圈(for)
-		<ol>
-			<li v-for="looplist in looplists">
-				{{ looplist.te }}
-			</li>
-		</ol>
+		<div id="useroutput">
+			<div class="text-xl bg-slate-700 p-2 rounded-md border-l-4 border-l-amber-400">
+				練習二：使用者輸入(v-on:click)
+			</div>
+			<div class="p-2">
+				<div>
+					<button @click="reverseMessage" class="bg-stone-800 p-1 rounded-md">反轉下方文字</button>
+				</div>
+				<div>
+					<span>{{ Usermessage }}</span>
+				</div>
+
+			</div>
+		</div>
+		<div class="u-v">
+			<div class="text-xl bg-slate-700 p-2 rounded-md border-l-4 border-l-amber-400">
+				練習三：使用者與顯示雙向綁定(v-model)
+			</div>
+			<div class="p-2">
+				<div>
+
+					<p>{{ Usermessage2 }}</p>
+				</div>
+				<div><input v-model="Usermessage2" class="bg-black rounded-md p-1" /></div>
+			</div>
+		</div>
+		<div class="blind">
+			<div class="text-xl bg-slate-700 p-2 rounded-md border-l-4 border-l-amber-400">
+				練習四：條件(if)
+			</div>
+			<div class="p-2">
+				<button @click="showUcme" class="bg-stone-800 p-1 rounded-md">show{{ show }}</button>
+				<p v-if="ucme">你現在看到我ㄌ 又沒看到我ㄌ</p>
+			</div>
+		</div>
+		<div class="forloop">
+			<div class="text-xl bg-slate-700 p-2 rounded-md border-l-4 border-l-amber-400">
+				練習五：迴圈(for)
+			</div>
+			<div class="p-2">
+				<pre class="text-sm bg-black text-white p-2 font-mono">{{looplists}}</pre>
+				<ol>
+					<li v-for="looplist in looplists">
+						{{ looplist.te }}
+					</li>
+				</ol>
+			</div>
+		</div>
 	</div>
 </body>
 
 <script type="text/javascript">
+
 	//練習一
 	const Counter = {
 		data() {
@@ -86,6 +128,11 @@
 			return {
 				ucme: false
 			}
+		},
+		methods: {
+			showUcme() {
+				this.ucme = !this.ucme
+			}
 		}
 	}
 
@@ -104,6 +151,8 @@
 	}
 
 	Vue.createApp(forlist).mount(".forloop")
+
+
 </script>
 
 

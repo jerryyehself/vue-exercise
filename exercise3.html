@@ -5,20 +5,29 @@
 
 <head>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.4.21/vue.global.prod.min.js"></script>
-	<style type="text/css">
-		button {
-			display: flex;
-			align-items: column;
-			width: 5em;
-		}
-	</style>
+	<script src="https://unpkg.com/@tailwindcss/browser@4"></script>
 </head>
 
-<body>
-	<div class="test">
-		<te :chartType="chartList" v-for="chartList in chartLists"></te>
-		<!--<div v-for="chartList in chartLists" @click="getchat(chartList)">{{chartList}}</div>-->
-		<div>{{this.ot}}</div>
+<body class="bg-slate-500 text-stone-200 m-5 flex flex-col gap-5">
+	<div>
+		<a href="./index.html" class="flex font-bold text-lg">
+			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+				stroke="currentColor" class="size-6">
+				<path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+			</svg>
+			<span>back</span></a>
+	</div>
+	<div class="test" class=" w-full flex flex-col">
+		<div class="text-xl bg-slate-700 p-2 rounded-md border-l-4 border-l-amber-400">
+			練習：事件參數傳遞
+		</div>
+		<div class="p-2">
+			<div class="flex gap-1">
+				<button class="bg-stone-800 p-1 rounded-md" v-for="chartList in chartLists"
+					@click="getchat(chartList)">{{chartList}}</button>
+			</div>
+			<div>{{this.ot}}</div>
+		</div>
 	</div>
 </body>
 <script type="text/javascript">
@@ -33,20 +42,12 @@
 			getchat: function (text) {
 				this.ot = text;
 				//alert(this.ot);
-			}/*,
-					set: function(outtext){
-						const ot = this.text
-					}*/
+			},
+			set: function (outtext) {
+				const ot = this.text
+			}
 		}
 	})
-
-	test.component('te', {
-		props: ['chartType'],
-		template: `
-				<div @click="getchat(chartList)">`
-					{{}}
-		`</div>`
-			});
 
 	const vm = test.mount('.test')
 </script>

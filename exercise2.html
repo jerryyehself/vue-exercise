@@ -3,13 +3,29 @@
 
 <head>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.4.21/vue.global.prod.min.js"></script>
+	<script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+
 </head>
 
-<body>
-	<div id="productmarquee" class="demo">
-		<ol>
-			<todo-item v-for="product in products" v-bind:todo="product" v-bind:key="product.id"></todo-item>
-		</ol>
+<body class="bg-slate-500 text-stone-200 m-5 flex flex-col gap-5">
+	<div>
+		<a href="./index.html" class="flex font-bold text-lg">
+			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+				stroke="currentColor" class="size-6">
+				<path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+			</svg>
+			<span>back</span></a>
+	</div>
+	<div id="productmarquee" class=" w-full flex flex-col">
+		<div class="text-xl bg-slate-700 p-2 rounded-md border-l-4 border-l-amber-400">
+			練習：組件(components)
+		</div>
+		<div class="p-2">
+			<pre class="text-sm bg-black text-white p-2 font-mono">{{products}}</pre>
+			<ol class="list-decimal list-inside">
+				<todo-item v-for="product in products" v-bind:todo="product" v-bind:key="product.id"></todo-item>
+			</ol>
+		</div>
 	</div>
 </body>
 <script type="text/javascript">

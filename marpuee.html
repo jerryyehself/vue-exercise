@@ -1,15 +1,9 @@
 <html>
 <header>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.4.21/vue.global.prod.min.js"></script>
-	<style type="text/css">
-		body {
-			background-color: white;
-			margin: 0;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		}
+	<script src="https://unpkg.com/@tailwindcss/browser@4"></script>
 
+	<style type="text/css">
 		.fruit-buskit {
 			width: 70%;
 			height: 50%;
@@ -64,17 +58,29 @@
 	</style>
 </header>
 
-<body>
-	<div class="fruit-buskit">
+<body class="bg-slate-500 text-stone-200 m-5 flex flex-col gap-5">
+	<div>
+		<a href="./index.html" class="flex font-bold text-lg">
+			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+				stroke="currentColor" class="size-6">
+				<path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+			</svg>
+			<span>back</span></a>
+	</div>
+	<div>
+		<div class="text-xl bg-slate-700 p-2 rounded-md border-l-4 border-l-amber-400">幻燈片練習v.1</div>
 
-		<div class="fruit-pictures" v-for="fruitIntro in fruitIntros" v-show="defultFruit === fruitIntro.imageNumber">
-			{{fruitIntro.imageNumber}}
-			<div class="fruit-name">
-				{{fruitIntro.fruit}}
+		<div class="fruit-buskit p-2 h-100 w-full">
+			<div class="fruit-pictures" v-for="fruitIntro in fruitIntros"
+				v-show="defultFruit === fruitIntro.imageNumber">
+				{{fruitIntro.imageNumber}}
+				<div class="fruit-name">
+					{{fruitIntro.fruit}}
+				</div>
 			</div>
+			<div class="run-img" style="left: 0;" @click="imgGo(-1)">〈</div>
+			<div class="run-img" style="right: 0;" @click="imgGo(1)">〉</div>
 		</div>
-		<div class="run-img" style="left: 0;" @click="imgGo(-1)">〈</div>
-		<div class="run-img" style="right: 0;" @click="imgGo(1)">〉</div>
 	</div>
 </body>
 <script type="text/javascript">
